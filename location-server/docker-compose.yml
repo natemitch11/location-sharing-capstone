@@ -1,0 +1,17 @@
+version: '3.8'
+
+networks:
+  default:
+
+services:
+  database:
+    image: postgres:14-alpine
+    container_name: capstone-db
+    ports:
+      - "127.0.0.1:4000:5432"
+    volumes:
+      - "./.data/db:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: capstone-db

@@ -14,7 +14,6 @@ function Home(props) {
             </div>
             <Footer/>
         </>
-
     );
 }
 

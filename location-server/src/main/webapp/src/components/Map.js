@@ -6,6 +6,8 @@ let center1 = [40.35836778727895, -111.9542038456369]
 let center = []
 
 const Map = () => {
+    //set function to a button
+    //loop through device location coords and add a marker for each.
     let options = {
         enableHighAccuracy: true,
         timeout: 10,
@@ -33,7 +35,6 @@ const Map = () => {
         center[1] = long
     }
 
-    getBrowserLocation()
 
     return (
         <MapContainer center={center} zoom={12}>

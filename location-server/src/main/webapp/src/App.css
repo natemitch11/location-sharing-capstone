@@ -1,5 +1,7 @@
-a {
+.header-links {
     text-decoration: none;
+    color: #F3F7F0;
+    margin-left: 2.5rem;
 }
 
 .leaflet-container {

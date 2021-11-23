@@ -1,0 +1,38 @@
+a {
+    text-decoration: none;
+}
+
+.leaflet-container {
+    width: calc(100% - 300px);
+    height: calc(100vh - 150px);
+}
+
+.header {
+    display: flex;
+    height: 150px;
+    align-items: center;
+    background: #19323C;
+    color: #F3F7F0;
+    /*#00ABE7*/
+}
+
+.footer {
+    height: 150px;
+    background: #19323C;
+    color: #F3F7F0;
+}
+
+.logo-img {
+    padding-left: 30px;
+    height: 145px;
+}
+
+.main-content {
+    display: flex;
+}
+
+.nav-tools {
+    border: solid;
+    width: 300px;
+    height: calc(100vh - 150px);
+}

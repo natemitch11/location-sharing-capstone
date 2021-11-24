@@ -34,7 +34,22 @@
 }
 
 .nav-tools {
-    border: solid;
+    border-right: solid;
     width: 300px;
     height: calc(100vh - 150px);
+    display: flex;
+    flex-direction: column;
+}
+.device-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.5rem;
+}
+.user-devices{
+    margin-left: 1rem;
+}
+.new-device-link{
+    margin: 1rem;
+    text-decoration: none;
+    color: #00ABE7;
 }

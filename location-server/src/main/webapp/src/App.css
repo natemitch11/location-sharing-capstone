@@ -48,8 +48,21 @@
 .user-devices{
     margin-left: 1rem;
 }
-.new-device-link{
+.new-device-link {
     margin: 1rem;
     text-decoration: none;
     color: #00ABE7;
+}
+
+.my-location-button {
+    padding: 0px;
+    height: 33px;
+    width: 33px;
+    font-size: 30px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    background-image: url("../src/images/location-icon.png");
+    background-size: contain;
+    background-position: center;
 }

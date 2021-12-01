@@ -38,6 +38,6 @@ public class Device {
 
     public Device(DeviceDto deviceDto) {
         this.name = deviceDto.getName();
-        this.classification = deviceDto.getType();
+        this.classification = deviceDto.getClassification();
     }
 }

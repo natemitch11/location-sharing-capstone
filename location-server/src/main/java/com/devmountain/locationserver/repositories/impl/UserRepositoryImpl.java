@@ -2,7 +2,10 @@ package com.devmountain.locationserver.repositories.impl;
 
 import com.devmountain.locationserver.dto.UserDto;
 import com.devmountain.locationserver.model.User;
+import com.devmountain.locationserver.repositories.RoleRepository;
 import com.devmountain.locationserver.repositories.UserRepository;
+import com.devmountain.locationserver.request.RegisterReq;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -17,8 +20,13 @@ METHOD IDEAS FOR USERS:
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
+
     @PersistenceContext
     private EntityManager entityManager;
+
+    @Autowired
+    RoleRepository roleRepository;
+
 
     //FindBy methods
     @SuppressWarnings(value = "unchecked")
@@ -44,11 +52,23 @@ public class UserRepositoryImpl implements UserRepository {
 
     //New User Logic
     @Override
-    public void saveNewUser(UserDto userDto) {
+    public UserDto saveNewUser(UserDto userDto) {
         if (findById(userDto.getId()).isEmpty()) {
             User user = new User(userDto);
             save(user);
         }
+        return userDto;
+    }
+
+    @Override
+    public Optional<User> saveNewUser(RegisterReq registerReq) {
+        Optional<User> user = findByUsername(registerReq.getUsername());
+        if (user.isEmpty()) {
+            User newUser = new User(registerReq);
+            save(newUser);
+            return Optional.of(newUser);
+        }
+        return user;
     }
 
     //Get User Info
@@ -70,6 +90,11 @@ public class UserRepositoryImpl implements UserRepository {
             return "User " + username + " successfully deleted.";
         }
         return "Unable to remove user, " + username + " not found.";
+    }
+
+    @Override
+    public void saveAndFlush(User value) {
+        save(value);
     }
 
     //private class fields

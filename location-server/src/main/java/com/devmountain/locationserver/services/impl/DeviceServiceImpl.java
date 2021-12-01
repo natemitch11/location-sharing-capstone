@@ -19,8 +19,7 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     @Transactional
     public DeviceDto addNewDevice(DeviceDto deviceDto) {
-        deviceRepository.addNewDevice(deviceDto);
-        return deviceDto;
+        return deviceRepository.addNewDevice(deviceDto);
     }
 
     @Override
@@ -40,7 +39,7 @@ public class DeviceServiceImpl implements DeviceService {
     public DeviceDto updateDevice(Long id, DeviceDto deviceDto) {
         Optional<Device> device = deviceRepository.findById(id);
         device.ifPresent(value -> {
-            value.setClassification(deviceDto.getType() == null ? value.getClassification() : deviceDto.getType());
+            value.setClassification(deviceDto.getClassification() == null ? value.getClassification() : deviceDto.getClassification());
             value.setName(deviceDto.getName() == null ? value.getName() : deviceDto.getName());
         });
         return deviceDto;

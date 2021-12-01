@@ -49,9 +49,23 @@ public class LocationRepositoryImpl implements LocationRepository {
 
     @Override
     public List<Location> getLocationsByDevice(Long deviceId) {
-        return entityManager.createQuery(
-                        "select l.latitude, l.longitude, l.dateTime from Location l where l.device.id = :deviceId")
-                .setParameter("deviceId", deviceId)
+        return entityManager.createNativeQuery(
+                        "select d.id, l.lat, l.long from device_locations l" +
+                                " inner join devices d on d.id = l.device_id" +
+                                " where d.id = ?1")
+                .setParameter(1, deviceId)
+                .getResultList();
+    }
+
+    @Override
+    public List<Location> getAllUserDeviceLocations(String username) {
+        return entityManager.createNativeQuery(
+                        "select d.id, l.lat, l.long from device_locations l " +
+                                "inner join devices d on d.id = l.device_id " +
+                                "inner join users_devices ud on d.id = ud.device_id " +
+                                "left join users u on ud.user_id = u.id " +
+                                "where u.username like ?1")
+                .setParameter(1, username)
                 .getResultList();
     }
 

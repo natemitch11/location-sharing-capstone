@@ -2,6 +2,7 @@ package com.devmountain.locationserver.services.impl;
 
 import com.devmountain.locationserver.dto.LocationDto;
 import com.devmountain.locationserver.model.Device;
+import com.devmountain.locationserver.model.Location;
 import com.devmountain.locationserver.repositories.DeviceRepository;
 import com.devmountain.locationserver.repositories.LocationRepository;
 import com.devmountain.locationserver.services.LocationService;
@@ -36,5 +37,10 @@ public class LocationServiceImpl implements LocationService {
     @Override
     public List getLocationsByDevice(Long deviceId) {
         return locationRepository.getLocationsByDevice(deviceId);
+    }
+
+    @Override
+    public List<Location> getAllUserDeviceLocations(String username) {
+        return locationRepository.getAllUserDeviceLocations(username);
     }
 }

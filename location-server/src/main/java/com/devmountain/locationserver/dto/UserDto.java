@@ -19,7 +19,7 @@ public class UserDto {
 
     private String username;
 
-    private String passhash;
+    private String password;
 
     private Set<Device> deviceSet;
 
@@ -29,18 +29,19 @@ public class UserDto {
         this.lastName = user.getLastName();
         this.email = user.getEmail();
         this.username = user.getUsername();
-        this.passhash = user.getPasshash();
+        this.password = user.getPassword();
         this.deviceSet = user.getDeviceSet();
-
     }
 
-    public UserDto(String firstName, String lastName, String email, String username, String passhash, Set<Device> deviceSet) {
+    public UserDto(String firstName, String lastName, String email, String username, String password, Set<Device> deviceSet) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
-        this.passhash = passhash;
+        this.password = password;
         this.deviceSet = deviceSet;
     }
 
+    public UserDto() {
+    }
 }

@@ -1,6 +1,7 @@
 package com.devmountain.locationserver.model;
 
 import com.devmountain.locationserver.dto.UserDto;
+import com.devmountain.locationserver.request.RegisterReq;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -21,9 +22,17 @@ public class User {
         this.firstName = userDto.getFirstName();
         this.lastName = userDto.getLastName();
         this.email = userDto.getEmail();
-        this.passhash = userDto.getPasshash();
+        this.password = userDto.getPassword();
         this.deviceSet = userDto.getDeviceSet();
         this.username = userDto.getUsername();
+    }
+
+    public User(RegisterReq registerReq) {
+        this.firstName = registerReq.getFirstName();
+        this.lastName = registerReq.getLastName();
+        this.email = registerReq.getEmail();
+        this.password = registerReq.getPassword();
+        this.username = registerReq.getUsername();
     }
 
     @Id
@@ -42,8 +51,11 @@ public class User {
     @Column(name = "USERNAME", unique = true, nullable = false, length = 50)
     private String username;
 
-    @Column(name = "PASSHASH", nullable = false)
-    private String passhash;
+    @Column(name = "PASSWORD", nullable = false)
+    private String password;
+
+    @Column(name = "enabled")
+    private boolean enabled = true;
 
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(
@@ -55,13 +67,20 @@ public class User {
     @EqualsAndHashCode.Exclude
     private Set<Device> deviceSet = new HashSet<>();
 
-    public User(String firstName, String lastName, String email, String username, String passhash, Set<Device> deviceSet) {
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    public User(String firstName, String lastName, String email, String username, String password, Set<Device> deviceSet, Set<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
-        this.passhash = passhash;
+        this.password = password;
         this.deviceSet = deviceSet;
+        this.roles = roles;
     }
 
     public void addDevice(Device device) {

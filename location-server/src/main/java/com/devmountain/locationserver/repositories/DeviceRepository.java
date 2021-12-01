@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface DeviceRepository {
     Optional<Device> findById(Long id);
 
-    void addNewDevice(DeviceDto deviceDto);
+    DeviceDto addNewDevice(DeviceDto deviceDto);
 
     void removeDevice(Long id);
 

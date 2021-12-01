@@ -18,7 +18,7 @@ public class UsersDevicesRepositoryImpl implements UsersDevicesRepository {
     @Override
     public List<Device> getUserDevices(Long userId) {
         return entityManager.createNativeQuery(
-                        "select d.name, d.classification, u.username from users u" +
+                        "select d.name, d.classification, d.id, u.username from users u" +
                                 " inner join users_devices ud on u.id = ud.user_id" +
                                 " inner join devices d on ud.device_id = d.id" +
                                 " where u.id = ?1")

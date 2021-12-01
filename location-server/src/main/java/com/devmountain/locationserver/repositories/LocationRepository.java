@@ -15,4 +15,6 @@ public interface LocationRepository {
     String removeLocationByDeviceAfterDate(Long locationDto, LocalDateTime dateTime);
 
     List<Location> getLocationsByDevice(Long deviceId);
+
+    List<Location> getAllUserDeviceLocations(String username);
 }

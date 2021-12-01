@@ -2,13 +2,16 @@ package com.devmountain.locationserver.repositories;
 
 import com.devmountain.locationserver.dto.UserDto;
 import com.devmountain.locationserver.model.User;
+import com.devmountain.locationserver.request.RegisterReq;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository {
 
-    void saveNewUser(UserDto userDto);
+    UserDto saveNewUser(UserDto userDto);
+
+    Optional<User> saveNewUser(RegisterReq registerReq);
 
     Optional<User> findByUsername(String username);
 
@@ -19,4 +22,6 @@ public interface UserRepository {
 
     //Delete User
     String deleteUser(String username);
+
+    void saveAndFlush(User value);
 }

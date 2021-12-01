@@ -3,7 +3,7 @@ import {LatLng} from "leaflet/dist/leaflet-src.esm";
 import {useState} from "react";
 import LocationControl from "./LocationControl";
 
-const Map = () => {
+const Map = (props) => {
     const [map, setMap] = useState(null)
     const initialView: LatLng[] = new LatLng(39.8300172658557, -98.57428599054246)
 
@@ -20,7 +20,7 @@ const Map = () => {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <LocationControl key={'location-control'} position={'topleft'}/>
+                <LocationControl auth={props.auth} key={'location-control'} position={'topleft'}/>
             </MapContainer>
         </>
 

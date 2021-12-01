@@ -10,19 +10,19 @@ import java.util.List;
 public class DeviceDto {
     private Long id;
     private String name;
-    private String type;
+    private String classification;
     private List<Location> locations;
 
     public DeviceDto(Device device) {
         this.id = device.getId();
         this.name = device.getName();
-        this.type = device.getClassification();
+        this.classification = device.getClassification();
         this.locations = device.getLocations();
     }
 
-    public DeviceDto(String name, String type, List<Location> locations) {
+    public DeviceDto(String name, String classification, List<Location> locations) {
         this.name = name;
-        this.type = type;
+        this.classification = classification;
         this.locations = locations;
     }
 }

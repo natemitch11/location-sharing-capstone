@@ -30,12 +30,13 @@ public class DeviceRepositoryImpl implements DeviceRepository {
     }
 
     @Override
-    public void addNewDevice(DeviceDto deviceDto) {
+    public DeviceDto addNewDevice(DeviceDto deviceDto) {
         if (findById(deviceDto.getId()).isEmpty()) {
             Device device = new Device(deviceDto);
             save(device);
             deviceDto.setId(device.getId());
         }
+        return deviceDto;
     }
 
     @Override
@@ -50,7 +51,7 @@ public class DeviceRepositoryImpl implements DeviceRepository {
         Optional<Device> device = findById(deviceId);
         if (device.isPresent()) {
             return Optional.of(entityManager.createQuery(
-                            "select d from Device d where d.id = :deviceId")
+                            "select d.name, d.classification from Device d where d.id = :deviceId")
                     .setParameter("deviceId", deviceId)
                     .getResultList());
         }

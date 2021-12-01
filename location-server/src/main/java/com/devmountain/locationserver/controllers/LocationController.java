@@ -26,8 +26,13 @@ public class LocationController {
         return locationService.removeLocationByDeviceAfterDate(deviceId, dateTime);
     }
 
-    @GetMapping("/{deviceId}")
+    @GetMapping("/device/{deviceId}")
     public List<Location> getLocationsByDevice(@PathVariable("deviceId") Long deviceId) {
         return locationService.getLocationsByDevice(deviceId);
+    }
+
+    @GetMapping("/user/{username}")
+    public List<Location> getAllUserDeviceLocations(@PathVariable("username") String username) {
+        return locationService.getAllUserDeviceLocations(username);
     }
 }

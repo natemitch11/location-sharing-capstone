@@ -9,8 +9,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin
 public class UserController {
-
     @Autowired
     private UserService userService;
 
@@ -18,13 +18,6 @@ public class UserController {
     @GetMapping("/{username}")
     public List<String> getUserInfo(@PathVariable String username) {
         return userService.getUserInfo(username);
-    }
-
-    //POST REQUESTS
-    @PostMapping
-    public UserDto postNewUser(@RequestBody UserDto userDto) {
-        userService.saveNewUser(userDto);
-        return userDto;
     }
 
     //PUT REQUESTS
